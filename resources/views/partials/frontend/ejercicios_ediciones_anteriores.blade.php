@@ -19,26 +19,29 @@
         </li>
     </ul>
     <p>La siguiente es la relación de cursos en las que se han publicado los ejercicios de las últimas ediciones:</p>
+    @php
+        // Creamos un "diccionario" manual: el número es la clave, el romano es el valor.
+        $romanos = [
+            13 => 'XIII',
+            14 => 'XIV',
+            15 => 'XV',
+            16 => 'XVI',
+            17 => 'XVII'
+        ];
+    @endphp
     <ul>
-        <li class="icon solid">
-            <a href="https://cifpcarlos3.net/codeweek/course/view.php?id=13" target="_blank">
-                <h4><b>XVI Olimpiadas</b> (Curso 2024-2025)</h4>
-            </a>
-        </li>
-        <li class="icon solid">
-            <a href="https://cifpcarlos3.net/codeweek/course/view.php?id=10" target="_blank">
-                <h4><b>XV Olimpiadas</b> (Curso 2023-2024)</h4>
-            </a>
-        </li>
-        <li class="icon solid">
-            <a href="https://cifpcarlos3.net/codeweek/course/view.php?id=9" target="_blank">
-                <h4><b>XIV Olimpiadas</b> (Curso 2022-2023)</h4>
-            </a>
-        </li>
-        <li class="icon solid">
-            <a href="https://cifpcarlos3.net/codeweek/course/view.php?id=7" target="_blank">
-                <h4><b>XIII Olimpiadas</b> (Curso 2021-2022)</h4>
-            </a>
-        </li>
+        @foreach($ediciones as $edicion)
+            @if($edicion->curso) {{-- Si la edición tiene un curso de moodle asociado --}}
+                <li class="icon solid">
+                    <a href="https://cifpcarlos3.net/codeweek/course/view.php?id={{ $edicion->curso->curso_moodle_id }}" target="_blank">
+                        <h4>
+                            {{-- Usamos el número de la olimpiada--}}
+                            <b>{{ $romanos[$edicion->curso->numero_olimpiada] ?? $edicion->curso->numero_olimpiada }} Olimpiadas</b>
+                            (Curso {{ $edicion->curso_escolar }})
+                        </h4>
+                    </a>
+                </li>
+            @endif
+        @endforeach
     </ul>
 </div>

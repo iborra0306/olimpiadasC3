@@ -29,7 +29,9 @@ use App\Http\Controllers\SessionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // Sacamos las ediciones para que aparezcan en blade
+    $ediciones = \App\Models\Edicion::with('curso')->orderBy('curso_escolar', 'desc')->get();
+    return view('welcome', compact('ediciones'));
 })->name('home');
 
 Route::post('/inscripcion', [InscripcionesController::class, 'store'])->name('inscripcion');

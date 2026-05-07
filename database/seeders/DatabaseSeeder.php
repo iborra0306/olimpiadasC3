@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         if (App::environment('local')) {
             $this->call(EdicionesSeeder::class);
+            $this->call(CursoSeeder::class);
             $this->call(PruebasTableSeeder::class);
         }
         // \App\Models\User::factory(10)->create();
