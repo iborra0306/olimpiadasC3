@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\CentroController;
 use App\Http\Controllers\Admin\CicloController;
+use App\Http\Controllers\Admin\CursoController;
 use App\Http\Controllers\Admin\EdicionFileController;
 use App\Http\Controllers\Admin\GradoController;
 use App\Http\Controllers\Admin\GrupoController;
@@ -64,6 +65,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
         Route::post('files',           [EdicionFileController::class, 'store'])  ->name('files.store');
         Route::delete('files/{file}',  [EdicionFileController::class, 'destroy'])->name('files.destroy');
     });
+    Route::resource('cursos', CursoController::class)->parameters(['cursos' => 'curso']);
 });
 
 Route::get('/resultados_live',        [ResultadosOlimpiadasController::class, 'index'])->name('resultados_live.index');

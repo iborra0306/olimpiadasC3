@@ -46,6 +46,13 @@
                     </x-nav-link>
                 </div>
                 @endcan
+                @can('viewAny', App\Models\Curso::class)
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cursos.index')" :active="request()->routeIs('cursos.index')">
+                        {{ __('Cursos') }}
+                    </x-nav-link>
+                </div>
+                @endcan
                 @can('viewAny', App\Models\Resultado::class)
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('resultados.index')" :active="request()->routeIs('resultados.index')">
