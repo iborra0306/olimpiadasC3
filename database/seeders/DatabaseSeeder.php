@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Prueba;
+use App\Models\ResultadoOlimpiadasCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             $this->call(CursoSeeder::class);
             $this->call(PruebasTableSeeder::class);
         }
+        ResultadoOlimpiadasCache::factory(30)->create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

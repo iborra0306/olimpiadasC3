@@ -15,4 +15,10 @@ class Prueba extends Model
         'categorias_ediciones_id',
         'patrocinadores_id'
     ];
+
+    public function resultados()
+    {
+        return $this->hasMany(ResultadoOlimpiadaCache::class, 'id_prueba');
+    }
+
 }
