@@ -19,24 +19,14 @@
         </li>
     </ul>
     <p>La siguiente es la relación de cursos en las que se han publicado los ejercicios de las últimas ediciones:</p>
-    @php
-        // Creamos un "diccionario" manual: el número es la clave, el romano es el valor.
-        $romanos = [
-            13 => 'XIII',
-            14 => 'XIV',
-            15 => 'XV',
-            16 => 'XVI',
-            17 => 'XVII'
-        ];
-    @endphp
     <ul>
         @foreach($ediciones as $edicion)
             @if($edicion->curso) {{-- Si la edición tiene un curso de moodle asociado --}}
                 <li class="icon solid">
                     <a href="https://cifpcarlos3.net/codeweek/course/view.php?id={{ $edicion->curso->curso_moodle_id }}" target="_blank">
                         <h4>
-                            {{-- Usamos el número de la olimpiada--}}
-                            <b>{{ $romanos[$edicion->curso->numero_olimpiada] ?? $edicion->curso->numero_olimpiada }} Olimpiadas</b>
+                            {{-- Generamos los numeros romanos de forma dinamica con el metodo de Curso --}}
+                            <b>{{ $edicion->curso->convertirARomano($edicion->curso->numero_olimpiada)}} Olimpiadas</b>
                             (Curso {{ $edicion->curso_escolar }})
                         </h4>
                     </a>
