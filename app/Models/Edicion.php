@@ -33,6 +33,11 @@ class Edicion extends Model
         // Obtener la edición más reciente por fecha de apertura
         return Edicion::orderBy('fecha_apertura', 'DESC')->first();
     }
+    
+    public static function withCurso()
+    {
+        return self::with('curso')->orderBy('curso_escolar', 'desc')->get();
+    }
 
     public function resultados()
     {
