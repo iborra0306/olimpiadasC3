@@ -13,8 +13,8 @@ class ResultadoOlimpiadasCache extends Model
 
     protected $fillable = [
         'grado',
+        'firstname',
         'lastname',
-        'first_name',
         'id_prueba',
         'maxpuntuacion',
         'MomentoConsecución',
