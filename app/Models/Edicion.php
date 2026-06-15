@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Edicion extends Model
 {
@@ -49,6 +50,11 @@ class Edicion extends Model
         return $this->belongsToMany(Grupo::class, 'edicion_grupo');
     }
 
+    // Relacion 1:1 con cursos
+    public function cursos()
+    {
+        return $this->hasOne(Curso::class, 'edicion_id');
+    }
 }
 
 //faltan añadir las relaciones entre tablas
