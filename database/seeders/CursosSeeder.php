@@ -18,6 +18,7 @@ class CursosSeeder extends Seeder
             Curso::create([
                 'nombre' => $curso['nombre'],
                 'url' => $curso['url'],
+                'edicion_id' => $curso['edicion_id'],
             ]);
         }
     }
@@ -26,17 +27,17 @@ class CursosSeeder extends Seeder
         array(
             'nombre' => 'Curso 2024-2025',
             'url' => 'https://cifpcarlos3.net/codeweek/course/view.php?id=13',
-            'edicion_id' => 16
+            'edicion_id' => 4
         ),
         array(
             'nombre' => 'Curso 2023-2024',
             'url' => 'https://cifpcarlos3.net/codeweek/course/view.php?id=10',
-            'edicion_id' => 15
+            'edicion_id' => 3
         ),
         array(
             'nombre' => 'Curso 2022-2023',
             'url' => 'https://cifpcarlos3.net/codeweek/course/view.php?id=9',
-            'edicion_id' => 14
+            'edicion_id' => 2
         ),
     );
 

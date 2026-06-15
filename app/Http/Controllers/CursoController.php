@@ -13,9 +13,11 @@ class CursoController extends Controller
      */
     public function index(Edicion $edicion)
     {
-        $cursos = $edicion->cursos;
+        $edicion->load('cursos');
 
-        return view('cursos.index', compact('ediciones', 'cursos'));
+        $curso = $edicion->cursos;
+
+        return view('admin.cursos.index', compact('edicion', 'curso'));
     }
 
     /**
@@ -23,7 +25,7 @@ class CursoController extends Controller
      */
     public function create(Edicion $edicion)
     {
-        return view('cursos.create', compact('edicion'));
+        return view('admin.cursos.create', compact('edicion'));
     }
 
     /**
@@ -42,7 +44,7 @@ class CursoController extends Controller
             'edicion_id' => $edicion->id,
         ]);
 
-        return redirect()->route('ediciones.curso.index', $edicion->id)->with('Confirmado', 'Curso creado correctamente');
+        return redirect()->route('admin.ediciones.curso.index', $edicion->id)->with('Confirmado', 'Curso creado correctamente');
     }
 
     /**
@@ -50,7 +52,7 @@ class CursoController extends Controller
      */
     public function show(Edicion $edicion, Curso $curso)
     {
-        return view('cursos.show', compact('edicion', 'curso'));
+        return view('admin.cursos.show', compact('edicion', 'curso'));
     }
 
     /**
@@ -58,7 +60,7 @@ class CursoController extends Controller
      */
     public function edit(Edicion $edicion, Curso $curso)
     {
-        return view('cursos.edit', compact('edicion', 'curso'));
+        return view('admin.cursos.edit', compact('edicion', 'curso'));
     }
 
     /**
@@ -77,7 +79,7 @@ class CursoController extends Controller
             'edicion_id' => $edicion->id,
         ]);
 
-        return redirect()->route('ediciones.curso.index', $edicion->id)->with('Confirmado', 'Curso actualizado correctamente');
+        return redirect()->route('admin.ediciones.curso.index', $edicion->id)->with('Confirmado', 'Curso actualizado correctamente');
     }
 
     /**
@@ -87,6 +89,6 @@ class CursoController extends Controller
     {
         $curso->delete();
 
-        return redirect()->route('ediciones.cursos.index', $edicion->id)->with('Confirmado', 'Curso borrado correctamente');
+        return redirect()->route('admin.ediciones.cursos.index', $edicion->id)->with('Confirmado', 'Curso borrado correctamente');
     }
 }
