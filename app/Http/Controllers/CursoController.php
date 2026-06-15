@@ -23,16 +23,20 @@ class CursoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Edicion $edicion)
+    public function create(Edicion $edicion, Curso $curso)
     {
+        $this->authorize('update', $curso);
+
         return view('admin.cursos.create', compact('edicion'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Edicion $edicion)
+    public function store(Request $request, Edicion $edicion, Curso $curso)
     {
+        $this->authorize('update', $curso);
+
         $request->validate([
             'nombre' => 'required|string|max:100',
             'url' => 'required|string|max:255',
@@ -60,6 +64,8 @@ class CursoController extends Controller
      */
     public function edit(Edicion $edicion, Curso $curso)
     {
+        $this->authorize('update', $curso);
+
         return view('admin.cursos.edit', compact('edicion', 'curso'));
     }
 
@@ -68,6 +74,8 @@ class CursoController extends Controller
      */
     public function update(Request $request, Edicion $edicion, Curso $curso)
     {
+        $this->authorize('update', $curso);
+
         $request->validate([
             'nombre' => 'required|string|max:100',
             'url' => 'required|string|max:255',
@@ -87,6 +95,8 @@ class CursoController extends Controller
      */
     public function destroy(Edicion $edicion, Curso $curso)
     {
+        $this->authorize('update', $curso);
+
         $curso->delete();
 
         return redirect()->route('admin.ediciones.cursos.index', $edicion->id)->with('Confirmado', 'Curso borrado correctamente');
