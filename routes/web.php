@@ -15,6 +15,7 @@ use App\Http\Controllers\ResultadosOlimpiadasController;
 use App\Http\Controllers\Admin\ParticipanteController;
 use App\Http\Controllers\Admin\EdicionController;
 use App\Http\Controllers\Admin\ResultadoController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\SessionController;
 
 /*
@@ -62,6 +63,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
         Route::post('files',           [EdicionFileController::class, 'store'])  ->name('files.store');
         Route::delete('files/{file}',  [EdicionFileController::class, 'destroy'])->name('files.destroy');
     });
+    Route::resource('ediciones.cursos', CursoController::class)->parameters(['ediciones' => 'edicion']);
 });
 
 Route::get('/resultados_live',        [ResultadosOlimpiadasController::class, 'index'])->name('resultados_live.index');
