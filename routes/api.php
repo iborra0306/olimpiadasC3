@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\V1\CursoController;
+use App\Http\Controllers\InscripcionesController;
+use App\Http\Middleware\SoloEstudiantes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Services\OlimpiadaService;
@@ -22,6 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::get('/cursos', [CursoController::class, 'index']);
+    Route::post('/pruebas/{id}/solicitarPlaza', [InscripcionesController::class, 'solicitarPlaza'])
+        ->middleware([SoloEstudiantes::class]);
+    Route::put('/pruebas/{id}/validarPlaza', [InscripcionesController::class, 'validarPlaza']);
 });
 
 Route::get('/miPuesto', [OlimpiadaService::class, 'obtenerPuesto']);

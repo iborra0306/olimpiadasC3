@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -56,5 +57,15 @@ class User extends Authenticatable
         return isset($grupo)
             ? ($this->id === $grupo->tutor)
             : (Grupo::where('tutor', $this->id)->exists());
+    }
+
+    public function inscripcion_talleres(): HasMany
+    {
+        return $this->hasMany(InscripcionTaller::class);
+    }
+
+    public function esEstudiante(): bool
+    {
+        return !is_null($this->grado);
     }
 }

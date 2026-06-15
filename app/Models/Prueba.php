@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Prueba extends Model
 {
@@ -18,7 +19,12 @@ class Prueba extends Model
 
     public function resultados()
     {
-        return $this->hasMany(ResultadoOlimpiadaCache::class, 'id_prueba');
+        return $this->hasMany(ResultadoOlimpiadasCache::class, 'id_prueba');
+    }
+
+    public function inscripcion_talleres(): HasMany
+    {
+        return $this->hasMany(InscripcionTaller::class);
     }
 
 }
