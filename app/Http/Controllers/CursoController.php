@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class CursoController extends Controller
 {
     /**
+     *
      * Display a listing of the resource.
      */
     public function index(Edicion $edicion)
@@ -25,7 +26,7 @@ class CursoController extends Controller
      */
     public function create(Edicion $edicion, Curso $curso)
     {
-        $this->authorize('update', $curso);
+        $this->authorize('create', $curso);
 
         return view('admin.cursos.create', compact('edicion'));
     }
